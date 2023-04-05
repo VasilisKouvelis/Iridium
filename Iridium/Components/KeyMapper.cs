@@ -9,7 +9,7 @@
         }
 
         public static String GetKeyString(Keys key) {
-            return GetKey(key);
+            return GetKey(key).ToUpper();
         }
 
         public static String GetKey(Keys key) {
