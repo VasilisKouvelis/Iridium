@@ -25,12 +25,12 @@
         private void InitializeComponent() {
             KeyButton = new Button();
             panel1 = new Panel();
+            ExitBtn = new Button();
             IsActiveBox = new CheckBox();
+            ApplyBtn = new Button();
             label2 = new Label();
             IntervalBox = new TextBox();
             label1 = new Label();
-            button1 = new Button();
-            button2 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,15 +45,16 @@
             KeyButton.TabIndex = 10;
             KeyButton.Text = "W";
             KeyButton.UseVisualStyleBackColor = true;
-            KeyButton.Click += button3_Click;
+            KeyButton.Click += SelectedKey_Click;
+            KeyButton.KeyPress += KeyButton_KeyPress;
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = Color.Black;
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(ExitBtn);
             panel1.Controls.Add(IsActiveBox);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(ApplyBtn);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(IntervalBox);
             panel1.Controls.Add(label1);
@@ -62,6 +63,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(243, 161);
             panel1.TabIndex = 11;
+            // 
+            // ExitBtn
+            // 
+            ExitBtn.FlatAppearance.BorderColor = Color.Red;
+            ExitBtn.FlatStyle = FlatStyle.Flat;
+            ExitBtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            ExitBtn.Location = new Point(134, 120);
+            ExitBtn.Name = "ExitBtn";
+            ExitBtn.Size = new Size(98, 31);
+            ExitBtn.TabIndex = 16;
+            ExitBtn.Text = "EXIT";
+            ExitBtn.UseVisualStyleBackColor = true;
+            ExitBtn.Click += button2_Click;
             // 
             // IsActiveBox
             // 
@@ -73,6 +87,20 @@
             IsActiveBox.TabIndex = 14;
             IsActiveBox.Text = "Active";
             IsActiveBox.UseVisualStyleBackColor = true;
+            // 
+            // ApplyBtn
+            // 
+            ApplyBtn.FlatAppearance.BorderColor = Color.Lime;
+            ApplyBtn.FlatStyle = FlatStyle.Flat;
+            ApplyBtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            ApplyBtn.ForeColor = Color.Lime;
+            ApplyBtn.Location = new Point(11, 120);
+            ApplyBtn.Name = "ApplyBtn";
+            ApplyBtn.Size = new Size(98, 31);
+            ApplyBtn.TabIndex = 15;
+            ApplyBtn.Text = "APPLY";
+            ApplyBtn.UseVisualStyleBackColor = true;
+            ApplyBtn.Click += ApplyBtn_Click;
             // 
             // label2
             // 
@@ -104,45 +132,20 @@
             label1.TabIndex = 11;
             label1.Text = "Selected Key:";
             // 
-            // button1
-            // 
-            button1.FlatAppearance.BorderColor = Color.Lime;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.Lime;
-            button1.Location = new Point(11, 120);
-            button1.Name = "button1";
-            button1.Size = new Size(98, 31);
-            button1.TabIndex = 15;
-            button1.Text = "APPLY";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.FlatAppearance.BorderColor = Color.Red;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(134, 120);
-            button2.Name = "button2";
-            button2.Size = new Size(98, 31);
-            button2.TabIndex = 16;
-            button2.Text = "EXIT";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // EditForm
             // 
+            AcceptButton = ApplyBtn;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Red;
+            CancelButton = ExitBtn;
             ClientSize = new Size(245, 165);
             Controls.Add(panel1);
             ForeColor = Color.Red;
             FormBorderStyle = FormBorderStyle.None;
             Name = "EditForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "EditForm";
+            Text = "Edit...";
             Load += EditForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -157,7 +160,7 @@
         private Label label2;
         private TextBox IntervalBox;
         private Label label1;
-        private Button button1;
-        private Button button2;
+        private Button ApplyBtn;
+        private Button ExitBtn;
     }
 }

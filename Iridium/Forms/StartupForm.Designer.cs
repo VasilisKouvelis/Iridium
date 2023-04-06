@@ -23,9 +23,10 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             KeyboardPage = new TabPage();
             MousePage = new TabPage();
-            panel1 = new Panel();
+            OnOffPanel = new Panel();
             ApplicationExitButton = new Button();
             WorkingLabel = new Label();
             CurrentWindowLabel = new Label();
@@ -41,6 +42,7 @@
             IntervalHeader = new ColumnHeader();
             IDHeader = new ColumnHeader();
             tabPage2 = new TabPage();
+            MainTimer = new System.Windows.Forms.Timer(components);
             visualStudioTabControl2.SuspendLayout();
             tabPage1.SuspendLayout();
             SuspendLayout();
@@ -65,21 +67,21 @@
             MousePage.TabIndex = 1;
             MousePage.Text = "Mouse";
             // 
-            // panel1
+            // OnOffPanel
             // 
-            panel1.BackColor = Color.Red;
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(5, 640);
-            panel1.TabIndex = 5;
+            OnOffPanel.BackColor = Color.Red;
+            OnOffPanel.Dock = DockStyle.Left;
+            OnOffPanel.Location = new Point(0, 0);
+            OnOffPanel.Name = "OnOffPanel";
+            OnOffPanel.Size = new Size(5, 539);
+            OnOffPanel.TabIndex = 5;
             // 
             // ApplicationExitButton
             // 
             ApplicationExitButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ApplicationExitButton.FlatAppearance.BorderColor = Color.Red;
             ApplicationExitButton.FlatStyle = FlatStyle.Flat;
-            ApplicationExitButton.Location = new Point(605, 0);
+            ApplicationExitButton.Location = new Point(296, 0);
             ApplicationExitButton.Name = "ApplicationExitButton";
             ApplicationExitButton.Size = new Size(23, 23);
             ApplicationExitButton.TabIndex = 6;
@@ -129,7 +131,7 @@
             visualStudioTabControl2.SelectedTextColor = Color.FromArgb(255, 255, 255);
             visualStudioTabControl2.ShowClosingButton = false;
             visualStudioTabControl2.ShowClosingMessage = false;
-            visualStudioTabControl2.Size = new Size(314, 471);
+            visualStudioTabControl2.Size = new Size(314, 469);
             visualStudioTabControl2.TabIndex = 9;
             visualStudioTabControl2.TextColor = Color.FromArgb(255, 255, 255);
             // 
@@ -144,7 +146,7 @@
             tabPage1.Location = new Point(4, 20);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(306, 447);
+            tabPage1.Size = new Size(306, 445);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Keyboard";
             // 
@@ -160,6 +162,7 @@
             button4.TabIndex = 10;
             button4.Text = "Toggle";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -199,6 +202,7 @@
             button1.TabIndex = 7;
             button1.Text = "Add";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // SpamKeysListView
             // 
@@ -211,7 +215,7 @@
             SpamKeysListView.Name = "SpamKeysListView";
             SpamKeysListView.Scrollable = false;
             SpamKeysListView.ShowGroups = false;
-            SpamKeysListView.Size = new Size(227, 441);
+            SpamKeysListView.Size = new Size(227, 439);
             SpamKeysListView.TabIndex = 0;
             SpamKeysListView.UseCompatibleStateImageBehavior = false;
             SpamKeysListView.View = View.Details;
@@ -242,19 +246,24 @@
             tabPage2.Location = new Point(4, 20);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(306, 447);
+            tabPage2.Size = new Size(306, 445);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Mouse";
+            // 
+            // MainTimer
+            // 
+            MainTimer.Enabled = true;
+            MainTimer.Tick += MainTimer_Tick;
             // 
             // StartupForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(629, 640);
+            ClientSize = new Size(320, 539);
             Controls.Add(visualStudioTabControl2);
             Controls.Add(CurrentWindowLabel);
-            Controls.Add(panel1);
+            Controls.Add(OnOffPanel);
             Controls.Add(ApplicationExitButton);
             Controls.Add(WorkingLabel);
             Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -275,7 +284,7 @@
         #endregion
         private TabPage KeyboardPage;
         private TabPage MousePage;
-        private Panel panel1;
+        private Panel OnOffPanel;
         private Button ApplicationExitButton;
         private Label WorkingLabel;
         private Label CurrentWindowLabel;
@@ -291,5 +300,6 @@
         private ColumnHeader KeyHeader;
         private ColumnHeader IntervalHeader;
         private ColumnHeader IDHeader;
+        private System.Windows.Forms.Timer MainTimer;
     }
 }

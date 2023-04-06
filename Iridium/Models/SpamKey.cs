@@ -7,20 +7,21 @@ using System.Threading.Tasks;
 
 namespace Iridium.Models {
     public class SpamKey {
-
         private static int Incremental = 0;
+
 
         public int ID { get; set; }
         public Keys Key { get; set; }
         public int Interval { get; set; }
         public bool Active { get; set; }
 
-
+        public bool SpamRunning { get; set; }
         public SpamKey() {
             this.ID = Incremental++;
             this.Key = Keys.Escape;
             this.Interval = 1000;
             this.Active = false;
+            this.SpamRunning = false;
         }
 
         public SpamKey(Keys key, int interval, bool active) {
@@ -28,6 +29,7 @@ namespace Iridium.Models {
             this.Key = key;
             this.Interval = interval;
             this.Active = active;
+            this.SpamRunning = false;
         }
 
         public SpamKey(int id, Keys key, int interval, bool active) {
@@ -35,13 +37,15 @@ namespace Iridium.Models {
             this.Key = key;
             this.Interval = interval;
             this.Active = active;
+            this.SpamRunning = false;
         }
 
         public SpamKey(SpamKey spamKey) {
             this.ID = spamKey.ID;
             this.Key = spamKey.Key;
             this.Interval = spamKey.Interval;
-            this.Active = spamKey.Active;
+            this.Active = spamKey.Active;   
+            this.SpamRunning = false;
         }
 
         public void SetKey(Keys key) {
@@ -81,5 +85,23 @@ namespace Iridium.Models {
         public static void SetIncremental(int value) {
             Incremental = value;
         }
+
+        public System.Windows.Forms.Timer SpamTimer;
+        private void SpamTimer_Tick(object sender, EventArgs e) {
+            SendKeys.Send(KeyMapper.GetKey(this.Key));
+        }
+        public void StartSpam() {
+            SpamTimer = new();
+            SpamTimer.Interval = this.Interval;
+            SpamTimer.Tick += SpamTimer_Tick;
+            SpamTimer.Start();
+            this.SpamRunning = true;
+        }
+        public void StopSpam() {
+            SpamTimer.Stop();
+            SpamTimer.Dispose();
+            this.SpamRunning = false;
+        }
+      
     }
 }
