@@ -9,14 +9,20 @@ namespace Iridium.Forms {
         public List<SpamKey> SpamKeys = new();
         public Dictionary<int, SpamKey> SpamKeysDict = new();
 
+
+        private int W_Width = 311;
+        private int W_Height = 238;
+        private bool MiniMode = false;
+
+
         public StartupForm() {
             InitializeComponent();
         }
 
         public void PopulateSpamButtons() {
             SpamKeysListView.Items.Clear();
-            foreach (var keypair in SpamKeysDict) {
-                var spamKey = keypair.Value;
+            foreach (var kp in SpamKeysDict) {
+                var spamKey = kp.Value;
                 SpamKeysListView.Items.Add(spamKey.GetListViewItem());
             }
         }
@@ -76,7 +82,8 @@ namespace Iridium.Forms {
         }
 
         private void SpamkeysListView(object sender, EventArgs e) {
-            EditSpamKey();
+            //EditSpamKey();
+            ToggleBtn_Click(sender, e);
         }
         private void button2_Click(object sender, EventArgs e) {
             EditSpamKey();
@@ -86,23 +93,33 @@ namespace Iridium.Forms {
         public void AddSpamKey() {
             using EditForm editForm = new(SpamKeysDict, -9999);
             editForm.ShowDialog();
-
+            SpamKeysDict = editForm.SPAMKEYS;
             PopulateSpamButtons();
         }
 
 
 
         public void EditSpamKey() {
-            //select the key from the selected item
-            if (SpamKeysListView.SelectedItems.Count == 0)
-                return;
-            var selectedItem = SpamKeysListView.SelectedItems[0];
-            var spamKey = SpamKeysDict[int.Parse(selectedItem.SubItems[3].Text)];
-            //MessageBox.Show(spamKey.ToString());
-            using EditForm editForm = new(SpamKeysDict, spamKey.ID);
-            editForm.ShowDialog();
+            try {
+                //select the key from the selected item
+                if (SpamKeysListView.SelectedItems.Count == 0)
+                    return;
+                var selectedItem = SpamKeysListView.SelectedItems[0];
+                var spamKey = SpamKeysDict[int.Parse(selectedItem.SubItems[3].Text)];
+                //MessageBox.Show(spamKey.ToString());
+                using EditForm editForm = new(SpamKeysDict, spamKey.ID);
+                editForm.ShowDialog();
 
-            PopulateSpamButtons();
+                PopulateSpamButtons();
+            }
+            catch (Exception ex) {
+                StringBuilder sb = new StringBuilder();
+                foreach (var item in SpamKeysDict) {
+                    sb.AppendLine($"{item.Key}  {item.Value}");
+                }
+                MessageBox.Show($"{ex}\n\n{sb}");
+
+            }
 
         }
 
@@ -113,7 +130,7 @@ namespace Iridium.Forms {
             AddSpamKey();
         }
 
-        private void button4_Click(object sender, EventArgs e) {
+        private void ToggleBtn_Click(object sender, EventArgs e) {
             //toggle the active state of selected 
             if (SpamKeysListView.SelectedItems.Count == 0)
                 return;
@@ -126,11 +143,32 @@ namespace Iridium.Forms {
         private void MainTimer_Tick(object sender, EventArgs e) {
             CurrentWindowLabel.Text = this.Text = GetActiveWindow();
             WorkingLabel.Text = (Console.CapsLock ? "ON" : "OFF");
-            OnOffPanel.BackColor = (Console.CapsLock ? Color.Lime : Color.Red);
+            this.BackColor = (Console.CapsLock ? Color.Lime : Color.Red);
             if (Console.CapsLock) {
                 spamManager.Start(SpamKeysDict);
             }
             else { spamManager.Stop(SpamKeysDict); }
+        }
+
+        private void DeleteKeyBtn_Click(object sender, EventArgs e) {
+            //delete from the list the selected item
+            if (SpamKeysListView.SelectedItems.Count == 0)
+                return;
+            var selectedItem = SpamKeysListView.SelectedItems[0];
+            var spamKey = SpamKeysDict[int.Parse(selectedItem.SubItems[3].Text)];
+            SpamKeysDict.Remove(spamKey.ID);
+            PopulateSpamButtons();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e) {
+
+        }
+
+        private void MiniModeBtn_Click_1(object sender, EventArgs e) {
+            MiniMode = !MiniMode;
+            this.Height = (MiniMode ? 28 : W_Height);
+
+
         }
     }
 }

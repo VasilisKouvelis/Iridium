@@ -11,4 +11,8 @@
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+
 </Project>

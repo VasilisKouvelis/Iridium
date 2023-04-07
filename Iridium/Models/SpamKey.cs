@@ -88,6 +88,7 @@ namespace Iridium.Models {
 
         public System.Windows.Forms.Timer SpamTimer;
         private void SpamTimer_Tick(object sender, EventArgs e) {
+
             SendKeys.Send(KeyMapper.GetKey(this.Key));
         }
         public void StartSpam() {

@@ -1,5 +1,4 @@
 ﻿using Iridium.Components;
-using Iridium.Controls;
 using Iridium.Managers;
 using Iridium.Models;
 using System;
@@ -19,7 +18,7 @@ namespace Iridium.Forms {
 
         }
         private SpamKey spamKey = null;
-        private Dictionary<int, SpamKey> SPAMKEYS = null;
+        public Dictionary<int, SpamKey> SPAMKEYS = null;
         private int SPAMKEYID = -9999;
         private InputManager inputManager = new InputManager();
         private bool AddNewSpamKey = false;
@@ -33,7 +32,7 @@ namespace Iridium.Forms {
             }
 
             if (AddNewSpamKey) {
-                KeyButton.Text = "NONE";
+                SelectedKey.Text = "NONE";
                 IntervalBox.Text = "1000";
                 IsActiveBox.Checked = true;
                 return;
@@ -43,7 +42,7 @@ namespace Iridium.Forms {
             if (spamKey == null)
                 return;
             inputManager.SetKey(spamKey.Key);
-            KeyButton.Text = KeyMapper.GetKeyString(spamKey.Key);
+            SelectedKey.Text = KeyMapper.GetKeyString(spamKey.Key);
             IntervalBox.Text = spamKey.Interval.ToString();
             IsActiveBox.Checked = spamKey.Active;
         }
@@ -60,15 +59,18 @@ namespace Iridium.Forms {
 
             // add a new spamkey if the id is -9999 else update the existing one
             if (AddNewSpamKey) {
-                SPAMKEYS.Add(SPAMKEYS.Count, new SpamKey(inputManager.GetKey(), int.Parse(IntervalBox.Text), IsActiveBox.Checked));
+                var key = KeyMapper.SelectKeyFromString(SelectedKey.Text);
+                if ((key == Keys.None) || (!KeyMapper.IsValid(key))) {
+                    MessageBox.Show("Key is invalid.");
+                    return;
+                }
+                SPAMKEYS.Add(SpamKey.GetIncremental(), new SpamKey(inputManager.GetKey(), int.Parse(IntervalBox.Text), IsActiveBox.Checked));
             }
             else {
                 spamKey.Key = inputManager.GetKey();
                 spamKey.Interval = int.Parse(IntervalBox.Text);
                 spamKey.Active = IsActiveBox.Checked;
             }
-
-
             this.Close();
         }
 
@@ -82,12 +84,16 @@ namespace Iridium.Forms {
 
 
         private void SelectedKey_Click(object sender, EventArgs e) {
-            KeyButton.ForeColor = inputManager.Toggle();
+            SelectedKey.ForeColor = inputManager.Toggle();
         }
         private void KeyButton_KeyPress(object sender, KeyPressEventArgs e) {
             inputManager.SetKey(KeyMapper.SelectKey(e.KeyChar));
-            KeyButton.Text = inputManager.GetKeyName();
-            KeyButton.ForeColor = inputManager.Toggle();
+            SelectedKey.Text = inputManager.GetKeyName();
+            SelectedKey.ForeColor = inputManager.Toggle();
+        }
+
+        private void IntervalBox_TextChanged(object sender, EventArgs e) {
+
         }
     }
 }

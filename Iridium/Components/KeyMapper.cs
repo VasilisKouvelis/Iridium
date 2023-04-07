@@ -198,6 +198,12 @@
             return Keys.Escape;
         }
 
+        public static bool IsValid(Keys key) {
+            if (key == Keys.Escape) return false;
+
+            return true;
+        }
+
         public static Keys SelectKey(char key) {
             switch (key) {
                 //Numbers

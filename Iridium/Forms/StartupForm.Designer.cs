@@ -24,198 +24,144 @@
         /// </summary>
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
-            KeyboardPage = new TabPage();
-            MousePage = new TabPage();
-            OnOffPanel = new Panel();
             ApplicationExitButton = new Button();
             WorkingLabel = new Label();
             CurrentWindowLabel = new Label();
-            visualStudioTabControl2 = new Controls.VisualStudioTabControl();
-            tabPage1 = new TabPage();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            ToggleKeyBtn = new Button();
+            DeleteKeyBtn = new Button();
+            EditKeyBtn = new Button();
+            AddKeyBtn = new Button();
             SpamKeysListView = new ListView();
             ActiveHeader = new ColumnHeader();
             KeyHeader = new ColumnHeader();
             IntervalHeader = new ColumnHeader();
             IDHeader = new ColumnHeader();
-            tabPage2 = new TabPage();
             MainTimer = new System.Windows.Forms.Timer(components);
-            visualStudioTabControl2.SuspendLayout();
-            tabPage1.SuspendLayout();
+            MainFormPanel = new Panel();
+            label3 = new Label();
+            MiniModeBtn = new Button();
+            MainFormPanel.SuspendLayout();
             SuspendLayout();
-            // 
-            // KeyboardPage
-            // 
-            KeyboardPage.BackColor = Color.Black;
-            KeyboardPage.Location = new Point(4, 20);
-            KeyboardPage.Name = "KeyboardPage";
-            KeyboardPage.Padding = new Padding(3);
-            KeyboardPage.Size = new Size(353, 223);
-            KeyboardPage.TabIndex = 0;
-            KeyboardPage.Text = "Keyboard";
-            // 
-            // MousePage
-            // 
-            MousePage.BackColor = Color.Black;
-            MousePage.Location = new Point(4, 20);
-            MousePage.Name = "MousePage";
-            MousePage.Padding = new Padding(3);
-            MousePage.Size = new Size(353, 223);
-            MousePage.TabIndex = 1;
-            MousePage.Text = "Mouse";
-            // 
-            // OnOffPanel
-            // 
-            OnOffPanel.BackColor = Color.Red;
-            OnOffPanel.Dock = DockStyle.Left;
-            OnOffPanel.Location = new Point(0, 0);
-            OnOffPanel.Name = "OnOffPanel";
-            OnOffPanel.Size = new Size(5, 539);
-            OnOffPanel.TabIndex = 5;
             // 
             // ApplicationExitButton
             // 
             ApplicationExitButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            ApplicationExitButton.FlatAppearance.BorderColor = Color.Red;
+            ApplicationExitButton.BackColor = Color.Transparent;
+            ApplicationExitButton.FlatAppearance.BorderColor = Color.Black;
+            ApplicationExitButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 0, 0);
+            ApplicationExitButton.FlatAppearance.MouseOverBackColor = Color.Red;
             ApplicationExitButton.FlatStyle = FlatStyle.Flat;
-            ApplicationExitButton.Location = new Point(296, 0);
+            ApplicationExitButton.ForeColor = Color.Black;
+            ApplicationExitButton.Location = new Point(282, 2);
+            ApplicationExitButton.Margin = new Padding(4);
             ApplicationExitButton.Name = "ApplicationExitButton";
-            ApplicationExitButton.Size = new Size(23, 23);
+            ApplicationExitButton.Size = new Size(27, 25);
             ApplicationExitButton.TabIndex = 6;
             ApplicationExitButton.Text = "X";
-            ApplicationExitButton.UseVisualStyleBackColor = true;
+            ApplicationExitButton.UseVisualStyleBackColor = false;
             ApplicationExitButton.Click += ApplicationExitButton_Click;
             // 
             // WorkingLabel
             // 
+            WorkingLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             WorkingLabel.AutoSize = true;
             WorkingLabel.BackColor = Color.Transparent;
-            WorkingLabel.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Regular, GraphicsUnit.Point);
-            WorkingLabel.ForeColor = Color.White;
-            WorkingLabel.Location = new Point(3, 0);
+            WorkingLabel.Font = new Font("Lato", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            WorkingLabel.ForeColor = Color.Black;
+            WorkingLabel.Location = new Point(214, 2);
+            WorkingLabel.Margin = new Padding(4, 0, 4, 0);
             WorkingLabel.Name = "WorkingLabel";
-            WorkingLabel.Size = new Size(99, 46);
+            WorkingLabel.Size = new Size(48, 24);
             WorkingLabel.TabIndex = 7;
             WorkingLabel.Text = "OFF";
+            WorkingLabel.Visible = false;
             // 
             // CurrentWindowLabel
             // 
-            CurrentWindowLabel.AutoSize = true;
+            CurrentWindowLabel.BackColor = Color.Transparent;
+            CurrentWindowLabel.Dock = DockStyle.Top;
             CurrentWindowLabel.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point);
             CurrentWindowLabel.ForeColor = Color.DimGray;
-            CurrentWindowLabel.Location = new Point(13, 41);
+            CurrentWindowLabel.Location = new Point(0, 0);
+            CurrentWindowLabel.Margin = new Padding(4, 0, 4, 0);
             CurrentWindowLabel.Name = "CurrentWindowLabel";
-            CurrentWindowLabel.Size = new Size(102, 13);
+            CurrentWindowLabel.Size = new Size(307, 13);
             CurrentWindowLabel.TabIndex = 8;
             CurrentWindowLabel.Text = "Current Window Title";
+            CurrentWindowLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // visualStudioTabControl2
+            // ToggleKeyBtn
             // 
-            visualStudioTabControl2.ActiveColor = Color.Red;
-            visualStudioTabControl2.AllowDrop = true;
-            visualStudioTabControl2.BackTabColor = Color.Black;
-            visualStudioTabControl2.BorderColor = Color.Black;
-            visualStudioTabControl2.ClosingButtonColor = Color.WhiteSmoke;
-            visualStudioTabControl2.ClosingMessage = null;
-            visualStudioTabControl2.Controls.Add(tabPage1);
-            visualStudioTabControl2.Controls.Add(tabPage2);
-            visualStudioTabControl2.HeaderColor = Color.Black;
-            visualStudioTabControl2.HorizontalLineColor = Color.Red;
-            visualStudioTabControl2.ItemSize = new Size(240, 16);
-            visualStudioTabControl2.Location = new Point(5, 67);
-            visualStudioTabControl2.Name = "visualStudioTabControl2";
-            visualStudioTabControl2.SelectedIndex = 0;
-            visualStudioTabControl2.SelectedTextColor = Color.FromArgb(255, 255, 255);
-            visualStudioTabControl2.ShowClosingButton = false;
-            visualStudioTabControl2.ShowClosingMessage = false;
-            visualStudioTabControl2.Size = new Size(314, 469);
-            visualStudioTabControl2.TabIndex = 9;
-            visualStudioTabControl2.TextColor = Color.FromArgb(255, 255, 255);
+            ToggleKeyBtn.FlatAppearance.BorderColor = Color.SkyBlue;
+            ToggleKeyBtn.FlatStyle = FlatStyle.Flat;
+            ToggleKeyBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ToggleKeyBtn.ForeColor = Color.SkyBlue;
+            ToggleKeyBtn.Location = new Point(238, 114);
+            ToggleKeyBtn.Margin = new Padding(4);
+            ToggleKeyBtn.Name = "ToggleKeyBtn";
+            ToggleKeyBtn.Size = new Size(63, 40);
+            ToggleKeyBtn.TabIndex = 10;
+            ToggleKeyBtn.Text = "Toggle";
+            ToggleKeyBtn.UseVisualStyleBackColor = true;
+            ToggleKeyBtn.Click += ToggleBtn_Click;
             // 
-            // tabPage1
+            // DeleteKeyBtn
             // 
-            tabPage1.BackColor = Color.Black;
-            tabPage1.Controls.Add(button4);
-            tabPage1.Controls.Add(button3);
-            tabPage1.Controls.Add(button2);
-            tabPage1.Controls.Add(button1);
-            tabPage1.Controls.Add(SpamKeysListView);
-            tabPage1.Location = new Point(4, 20);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(306, 445);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Keyboard";
+            DeleteKeyBtn.FlatAppearance.BorderColor = Color.Red;
+            DeleteKeyBtn.FlatStyle = FlatStyle.Flat;
+            DeleteKeyBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            DeleteKeyBtn.ForeColor = Color.Red;
+            DeleteKeyBtn.Location = new Point(238, 162);
+            DeleteKeyBtn.Margin = new Padding(4);
+            DeleteKeyBtn.Name = "DeleteKeyBtn";
+            DeleteKeyBtn.Size = new Size(63, 40);
+            DeleteKeyBtn.TabIndex = 9;
+            DeleteKeyBtn.Text = "Delete";
+            DeleteKeyBtn.UseVisualStyleBackColor = true;
+            DeleteKeyBtn.Click += DeleteKeyBtn_Click;
             // 
-            // button4
+            // EditKeyBtn
             // 
-            button4.FlatAppearance.BorderColor = Color.SkyBlue;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.ForeColor = Color.SkyBlue;
-            button4.Location = new Point(236, 145);
-            button4.Name = "button4";
-            button4.Size = new Size(65, 65);
-            button4.TabIndex = 10;
-            button4.Text = "Toggle";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            EditKeyBtn.FlatAppearance.BorderColor = Color.Orange;
+            EditKeyBtn.FlatStyle = FlatStyle.Flat;
+            EditKeyBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            EditKeyBtn.ForeColor = Color.Orange;
+            EditKeyBtn.Location = new Point(238, 66);
+            EditKeyBtn.Margin = new Padding(4);
+            EditKeyBtn.Name = "EditKeyBtn";
+            EditKeyBtn.Size = new Size(63, 40);
+            EditKeyBtn.TabIndex = 8;
+            EditKeyBtn.Text = "Edit";
+            EditKeyBtn.UseVisualStyleBackColor = true;
+            EditKeyBtn.Click += button2_Click;
             // 
-            // button3
+            // AddKeyBtn
             // 
-            button3.FlatAppearance.BorderColor = Color.Red;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(236, 379);
-            button3.Name = "button3";
-            button3.Size = new Size(65, 65);
-            button3.TabIndex = 9;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.FlatAppearance.BorderColor = Color.Orange;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.ForeColor = Color.Orange;
-            button2.Location = new Point(236, 74);
-            button2.Name = "button2";
-            button2.Size = new Size(65, 65);
-            button2.TabIndex = 8;
-            button2.Text = "Edit";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button1
-            // 
-            button1.FlatAppearance.BorderColor = Color.Lime;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.Lime;
-            button1.Location = new Point(236, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(65, 65);
-            button1.TabIndex = 7;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            AddKeyBtn.FlatAppearance.BorderColor = Color.Lime;
+            AddKeyBtn.FlatStyle = FlatStyle.Flat;
+            AddKeyBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            AddKeyBtn.ForeColor = Color.Lime;
+            AddKeyBtn.Location = new Point(238, 18);
+            AddKeyBtn.Margin = new Padding(4);
+            AddKeyBtn.Name = "AddKeyBtn";
+            AddKeyBtn.Size = new Size(63, 40);
+            AddKeyBtn.TabIndex = 7;
+            AddKeyBtn.Text = "Add";
+            AddKeyBtn.UseVisualStyleBackColor = true;
+            AddKeyBtn.Click += button1_Click;
             // 
             // SpamKeysListView
             // 
             SpamKeysListView.BackColor = Color.Black;
             SpamKeysListView.Columns.AddRange(new ColumnHeader[] { ActiveHeader, KeyHeader, IntervalHeader, IDHeader });
-            SpamKeysListView.Dock = DockStyle.Left;
             SpamKeysListView.ForeColor = Color.Red;
             SpamKeysListView.FullRowSelect = true;
-            SpamKeysListView.Location = new Point(3, 3);
+            SpamKeysListView.Location = new Point(4, 18);
+            SpamKeysListView.Margin = new Padding(4);
             SpamKeysListView.Name = "SpamKeysListView";
             SpamKeysListView.Scrollable = false;
             SpamKeysListView.ShowGroups = false;
-            SpamKeysListView.Size = new Size(227, 439);
+            SpamKeysListView.Size = new Size(226, 184);
             SpamKeysListView.TabIndex = 0;
             SpamKeysListView.UseCompatibleStateImageBehavior = false;
             SpamKeysListView.View = View.Details;
@@ -240,66 +186,94 @@
             // 
             IDHeader.Text = "ID";
             // 
-            // tabPage2
-            // 
-            tabPage2.BackColor = Color.Black;
-            tabPage2.Location = new Point(4, 20);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(306, 445);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Mouse";
-            // 
             // MainTimer
             // 
             MainTimer.Enabled = true;
             MainTimer.Tick += MainTimer_Tick;
             // 
+            // MainFormPanel
+            // 
+            MainFormPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            MainFormPanel.BackColor = Color.Black;
+            MainFormPanel.Controls.Add(SpamKeysListView);
+            MainFormPanel.Controls.Add(CurrentWindowLabel);
+            MainFormPanel.Controls.Add(ToggleKeyBtn);
+            MainFormPanel.Controls.Add(AddKeyBtn);
+            MainFormPanel.Controls.Add(DeleteKeyBtn);
+            MainFormPanel.Controls.Add(EditKeyBtn);
+            MainFormPanel.Location = new Point(2, 28);
+            MainFormPanel.Name = "MainFormPanel";
+            MainFormPanel.Size = new Size(307, 208);
+            MainFormPanel.TabIndex = 11;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Lato", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.Black;
+            label3.Location = new Point(4, 2);
+            label3.Name = "label3";
+            label3.Size = new Size(126, 24);
+            label3.TabIndex = 13;
+            label3.Text = "Key Smasher";
+            // 
+            // MiniModeBtn
+            // 
+            MiniModeBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            MiniModeBtn.BackColor = Color.Transparent;
+            MiniModeBtn.FlatAppearance.BorderColor = Color.Black;
+            MiniModeBtn.FlatStyle = FlatStyle.Flat;
+            MiniModeBtn.ForeColor = Color.Black;
+            MiniModeBtn.Location = new Point(270, 2);
+            MiniModeBtn.Margin = new Padding(4);
+            MiniModeBtn.Name = "MiniModeBtn";
+            MiniModeBtn.Size = new Size(10, 25);
+            MiniModeBtn.TabIndex = 14;
+            MiniModeBtn.UseVisualStyleBackColor = false;
+            MiniModeBtn.Click += MiniModeBtn_Click_1;
+            // 
             // StartupForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
-            ClientSize = new Size(320, 539);
-            Controls.Add(visualStudioTabControl2);
-            Controls.Add(CurrentWindowLabel);
-            Controls.Add(OnOffPanel);
+            BackColor = Color.Red;
+            ClientSize = new Size(311, 238);
+            Controls.Add(MiniModeBtn);
+            Controls.Add(label3);
+            Controls.Add(MainFormPanel);
             Controls.Add(ApplicationExitButton);
             Controls.Add(WorkingLabel);
-            Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            ForeColor = Color.Red;
+            Font = new Font("Lato", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            ForeColor = Color.Black;
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4);
             Name = "StartupForm";
             Opacity = 0.95D;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Key Smasher";
             Load += Form1_Load;
             MouseDown += StartupForm_MouseDown;
-            visualStudioTabControl2.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
+            MainFormPanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private TabPage KeyboardPage;
-        private TabPage MousePage;
-        private Panel OnOffPanel;
-        private Button ApplicationExitButton;
         private Label WorkingLabel;
         private Label CurrentWindowLabel;
-        private Controls.VisualStudioTabControl visualStudioTabControl2;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
-        private Button button4;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button ApplicationExitButton;
+        private Button ToggleKeyBtn;
+        private Button DeleteKeyBtn;
+        private Button EditKeyBtn;
+        private Button AddKeyBtn;
         private ListView SpamKeysListView;
         private ColumnHeader ActiveHeader;
         private ColumnHeader KeyHeader;
         private ColumnHeader IntervalHeader;
         private ColumnHeader IDHeader;
         private System.Windows.Forms.Timer MainTimer;
+        private Panel MainFormPanel;
+        private Label label3;
+        private Button MiniModeBtn;
     }
 }
